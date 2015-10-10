@@ -32,6 +32,7 @@ module.exports = {
     publicPath: '/assets/'
   },
   externals: {
+    'material-ui': 'MUI',
     'react': 'React',
     'react-router': 'ReactRouter',
     'underscore': '_'

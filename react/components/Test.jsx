@@ -1,7 +1,11 @@
 import { Component } from 'react'
 import AudioPlayer from 'components/AudioPlayer'
-const LoginButtons = BlazeToReact('loginButtons')
+import Playlist from 'components/Playlist'
+import mui from 'material-ui'
+const ThemeManager = new mui.Styles.ThemeManager()
 
+const LoginButtons = BlazeToReact('loginButtons')
+const collection = ['42catats', 'mistertenbelow', 'snippet1', 'snippet2']
 const BASE_URL = '/listen/song'
 
 export default class Test extends Component {
@@ -10,6 +14,16 @@ export default class Test extends Component {
   state = {
     isPlaying: false,
     songId: `${BASE_URL}/42carats`
+  }
+
+  static childContextTypes = {
+    muiTheme: React.PropTypes.object
+  }
+
+  getChildContext () {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    }
   }
 
   changeSong = () => {
@@ -51,6 +65,7 @@ export default class Test extends Component {
         onTimeUpdate={ this.handlePlayerUpdate }
         source={ this.state.songId }
       />
+      <Playlist playlist={ collection } />
     </div>
   }
 }
