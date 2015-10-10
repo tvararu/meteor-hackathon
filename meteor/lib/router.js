@@ -2,10 +2,6 @@ if (Meteor.isServer) {
   var fs = Npm.require('fs')
 }
 
-Router.route('/', function () {
-  this.render(null)
-})
-
 Router.route('/listen/song/:songPath', function () {
   const songPath = encodeURIComponent(this.params.songPath)
   const path = `${process.env.PWD}/cache/${songPath}`
@@ -19,3 +15,7 @@ Router.route('/listen/song/:songPath', function () {
   const readStream = fs.createReadStream(path)
   readStream.pipe(this.response)
 }, { where: 'server' })
+
+Router.route('/(.*)', function () {
+  this.render(null)
+})
