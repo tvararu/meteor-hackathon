@@ -9,6 +9,11 @@ export default class Test extends Component {
   }
 
   render () {
-    return <div>Hello world!</div>
+    const LoginButtons = BlazeToReact('loginButtons')
+    return (
+      <div>
+        <LoginButtons />
+      </div>
+    )
   }
 }
