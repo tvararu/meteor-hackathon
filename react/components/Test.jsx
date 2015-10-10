@@ -5,6 +5,7 @@ import AudioPlayer from 'components/AudioPlayer'
 import Playlist from 'components/Playlist'
 import mui from 'material-ui'
 import reactMixin from 'react-mixin'
+import Player from 'components/Player'
 
 const { LinkedStateMixin } = addons
 const ThemeManager = new mui.Styles.ThemeManager()
@@ -53,16 +54,32 @@ export default class Test extends Component {
     this.setState({ isPlaying: !this.state.isPlaying })
   }
 
-  handlePlayerEnd = () => {
+  handlePlayerEnd = () => { }
 
+  handlePlayerProgress = () => { }
+
+  handlePlayerUpdate = () => { }
+
+  playNext = () => {
+    const songs = this.data.songs
+    const idx = songs.findIndex(song => song._id === this.state.selectedSong._id)
+
+    if (idx + 1 === songs.length) {
+      this.changeSong(songs[0])
+    } else {
+      this.changeSong(songs[idx + 1])
+    }
   }
 
-  handlePlayerProgress = () => {
+  playPrevious = () => {
+    const songs = this.data.songs
+    const idx = songs.findIndex(song => song._id === this.state.selectedSong._id)
 
-  }
-
-  handlePlayerUpdate = () => {
-
+    if (idx - 1 === -1) {
+      this.changeSong(songs[songs.length - 1])
+    } else {
+      this.changeSong(songs[idx - 1])
+    }
   }
 
   addSong = () => {
@@ -94,6 +111,13 @@ export default class Test extends Component {
         onTimeUpdate={ this.handlePlayerUpdate }
         source={ selectedSong.path } />
       : null
+    const player = (this.state.selectedSong)
+      ? <Player
+        item={ this.state.selectedSong }
+        onClickPlay={ this.playPause }
+        onClickNext={ this.playNext }
+        onClickPrevious={ this.playPrevious }
+      /> : null
     return <div>
       <LoginButtons />
       <br />
@@ -106,7 +130,11 @@ export default class Test extends Component {
       <button onClick={ this.playPause }>Play/pause song</button>
       <br />
       { audioPlayer }
-      <Playlist playlist={ this.data.songs } onListItemClick={ this.changeSong }/>
+      <Playlist
+        playlist={ this.data.songs }
+        selectedSong={ this.state.selectedSong }
+        onListItemClick={ this.changeSong } />
+      { player }
     </div>
   }
 }

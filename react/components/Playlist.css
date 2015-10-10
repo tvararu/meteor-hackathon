@@ -1,0 +1,7 @@
+.ListItem {
+  transition: background 0.3s ease;
+}
+
+.ListItem--selected {
+  background-color: salmon;
+}
