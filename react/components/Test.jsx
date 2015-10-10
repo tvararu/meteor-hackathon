@@ -5,7 +5,23 @@ import mui from 'material-ui'
 const ThemeManager = new mui.Styles.ThemeManager()
 
 const LoginButtons = BlazeToReact('loginButtons')
-const collection = ['42catats', 'mistertenbelow', 'snippet1', 'snippet2']
+const collection = [
+  {
+    name: '42carats',
+    artist: 'Artist'
+  },
+  {
+    name: 'mistertenbelow',
+    artist: 'Artist'
+  },
+  {
+    name: 'snippet1',
+    artist: 'Artist'
+  },
+  {
+    name: 'snippet2',
+    artist: 'Artist'
+  }]
 const BASE_URL = '/listen/song'
 
 export default class Test extends Component {
@@ -26,12 +42,8 @@ export default class Test extends Component {
     }
   }
 
-  changeSong = () => {
-    if (this.state.songId === `${BASE_URL}/42carats`) {
-      this.setState({ songId: `${BASE_URL}/mistertenbelow` })
-    } else {
-      this.setState({ songId: `${BASE_URL}/42carats` })
-    }
+  changeSong = (name) => {
+    this.setState({ songId: `${BASE_URL}/${name}` })
   }
 
   playPause = () => {
@@ -51,11 +63,10 @@ export default class Test extends Component {
   }
 
   render () {
-    console.log(this.state.isPlaying)
+    console.log(this.state.songId)
     return <div>
       <LoginButtons />
       <br />
-      <button onClick={ this.changeSong }>Change song</button>
       <button onClick={ this.playPause }>Play/pause song</button>
       <br />
       <AudioPlayer
@@ -65,7 +76,7 @@ export default class Test extends Component {
         onTimeUpdate={ this.handlePlayerUpdate }
         source={ this.state.songId }
       />
-      <Playlist playlist={ collection } />
+    <Playlist playlist={ collection } onListItemClick={ this.changeSong }/>
     </div>
   }
 }
