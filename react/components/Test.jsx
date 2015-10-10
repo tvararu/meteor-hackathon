@@ -1,39 +1,56 @@
-import { Component, PropTypes } from 'react'
+import { Component } from 'react'
+import AudioPlayer from 'components/AudioPlayer'
 const LoginButtons = BlazeToReact('loginButtons')
 
-class Player extends Component {
-  static displayName = 'Player'
-
-  static propTypes = {
-    songId: PropTypes.string.isRequired
-  }
-
-  render () {
-    console.log(this.props.songId)
-    return <audio controls='controls'>
-      <source src={ `/listen/song/${this.props.songId}` } type='audio/mpeg' />
-    </audio>
-  }
-}
+const BASE_URL = '/listen/song'
 
 export default class Test extends Component {
   static displayName = 'Test'
 
   state = {
-    songId: '42carats'
+    isPlaying: false,
+    songId: `${BASE_URL}/42carats`
   }
 
   changeSong = () => {
-    console.log('changeSong')
-    this.setState({ songId: 'mistertenbelow' })
+    if (this.state.songId === `${BASE_URL}/42carats`) {
+      this.setState({ songId: `${BASE_URL}/mistertenbelow` })
+    } else {
+      this.setState({ songId: `${BASE_URL}/42carats` })
+    }
+  }
+
+  playPause = () => {
+    this.setState({ isPlaying: !this.state.isPlaying })
+  }
+
+  handlePlayerEnd = () => {
+
+  }
+
+  handlePlayerProgress = () => {
+
+  }
+
+  handlePlayerUpdate = () => {
+
   }
 
   render () {
+    console.log(this.state.isPlaying)
     return <div>
       <LoginButtons />
       <br />
       <button onClick={ this.changeSong }>Change song</button>
-      <Player songId={ this.state.songId } />
+      <button onClick={ this.playPause }>Play/pause song</button>
+      <br />
+      <AudioPlayer
+        isPlaying={ this.state.isPlaying }
+        onEnd={ this.handlePlayerEnd }
+        onProgress={ this.handlePlayerProgress }
+        onTimeUpdate={ this.handlePlayerUpdate }
+        source={ this.state.songId }
+      />
     </div>
   }
 }
