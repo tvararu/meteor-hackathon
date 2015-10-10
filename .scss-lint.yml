@@ -1,0 +1,81 @@
+linters:
+  HexNotation:
+    enabled: true
+    style: uppercase # or 'lowercase'
+    severity: error
+
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: true
+
+  LeadingZero:
+    enabled: true
+    style: 'include_zero'
+
+  NameFormat:
+    enabled: false
+    allow_leading_underscore: true
+    convention: hyphenated_lowercase
+    severity: error
+
+  PropertyUnits:
+    enabled: true
+    global: [
+      'em',                        #  Font-relative lengths
+      'pt', 'px',                  #  Absolute lengths
+
+      'vh', 'vw', 'vmin', 'vmax', #  Viewport-percentage lengths
+
+      'deg', 'rad', 'turn',        #  Angle
+      'ms', 's',                   #  Duration
+
+      '%']                         #  Other
+    properties: {}
+    severity: error
+
+  SelectorFormat:
+    enabled: true
+    convention: strict_BEM
+    ignored_types: ["element"]
+    severity: error
+
+  StringQuotes:
+    enabled: true
+    style: single_quotes
+
+  VariableForProperty:
+    enabled: false
+    properties: []
+
+  ColorVariable:
+    severity: error
+
+  DeclarationOrder:
+    severity: error
+
+  DuplicateProperty:
+    severity: error
+
+  EmptyRule:
+    severity: error
+
+  ImportantRule:
+    severity: error
+
+  ImportPath:
+    severity: error
+
+  NestingDepth:
+    severity: error
+
+  PropertySpelling:
+    severity: error
+
+  PropertySortOrder:
+    severity: error
+
+  PropertyCount:
+    enabled: false
+
+  Compass::*:
+    enabled: false
