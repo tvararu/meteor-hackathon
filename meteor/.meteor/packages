@@ -29,3 +29,7 @@ blaze-html-templates
 ecmascript
 accounts-facebook
 iron:router
+meteorhacks:npm
+
+
+npm-container

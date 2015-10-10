@@ -51,7 +51,8 @@
       "ReactRouterSSR",
       "BlazeToReact",
       "Npm",
-      "Router"
+      "Router",
+      "_"
     ],
     "parser": "babel-eslint"
   },
