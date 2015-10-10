@@ -1,4 +1,5 @@
 import { Component } from 'react'
+const LoginButtons = BlazeToReact('loginButtons')
 
 export default class Test extends Component {
   static displayName = 'Test'
@@ -9,10 +10,14 @@ export default class Test extends Component {
   }
 
   render () {
-    const LoginButtons = BlazeToReact('loginButtons')
+    const userId = Meteor.user()._id
     return (
       <div>
         <LoginButtons />
+        <br />
+        <audio controls='controls'>
+          <source src={ `/listen/${userId}` } type='audio/mpeg' />
+        </audio>
       </div>
     )
   }
