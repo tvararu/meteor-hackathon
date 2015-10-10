@@ -14,7 +14,6 @@ export default class Player extends Component {
     return <div className='Player'>
       <div className='Player__Info'>
         <h2 className='Player__Name'>{ this.props.item.name }</h2>
-        <h3 className='Player__Artist'>{ this.props.item.artist }</h3>
       </div>
       <div className='Player__Controls'>
         <i

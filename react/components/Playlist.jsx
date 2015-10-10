@@ -25,7 +25,6 @@ export default class Playlist extends Component {
               key={ idx }>
               <ListItem
                 primaryText={ item.name }
-                secondaryText={ item.artist }
                 onClick={ () => this.props.onListItemClick(item) }
               />
             </div>

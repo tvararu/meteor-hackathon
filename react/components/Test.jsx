@@ -7,6 +7,8 @@ import mui from 'material-ui'
 import reactMixin from 'react-mixin'
 import Player from 'components/Player'
 
+const { TextField, FontIcon, RaisedButton } = mui
+
 const { LinkedStateMixin } = addons
 const ThemeManager = new mui.Styles.ThemeManager()
 // const LoginButtons = BlazeToReact('loginButtons')
@@ -125,11 +127,11 @@ export default class Test extends Component {
         onClickPrevious={ this.playPrevious }
       /> : null
     return <div>
-      <input
-        placeholder='Add song to library (YouTube, Soundcloud, etc)'
-        type='text'
+      <TextField
+        hintText='YouTube, Soundcloud, etc'
+        floatingLabelText='Add song to library'
         valueLink={ this.linkState('newSongUrl') } />
-      <button onClick={ this.addSong }>Add song</button>
+      <RaisedButton onClick={ this.addSong } label='Add song' />
       <br />
       { audioPlayer }
       <Playlist
