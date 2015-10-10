@@ -55,8 +55,10 @@ module.exports = [
       publicPath: '/assets/'
     },
     externals: {
+      'material-ui': 'MUI',
       'react': 'React',
-      'react-router': 'ReactRouter'
+      'react-router': 'ReactRouter',
+      'underscore': '_'
     },
     plugins: [
       new webpack.DefinePlugin({
