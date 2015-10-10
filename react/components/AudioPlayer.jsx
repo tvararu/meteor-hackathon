@@ -2,6 +2,7 @@
 
 var React = require('react')
 var { PropTypes } = React
+const BASE_URL = '/listen/song'
 
 export default React.createClass({
   propTypes: {
@@ -47,7 +48,7 @@ export default React.createClass({
 
   render () {
     return <audio>
-      <source src={ this.props.source } type='audio/mpeg' />
+      <source src={ `${BASE_URL}/${this.props.source}` } type='audio/mpeg' />
     </audio>
   },
 
