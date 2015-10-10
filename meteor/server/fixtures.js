@@ -9,7 +9,7 @@ Meteor.startup(() => {
 
     const cachedSongs = files.map((file) => {
       return {
-        name: path.basename(file),
+        name: path.basename(file).replace(path.extname(file), ''),
         path: file.replace(`${pwd}/cache/`, '').replace(/\//g, '-'),
         artist: 'Unknown',
         createdAt: +new Date(),
