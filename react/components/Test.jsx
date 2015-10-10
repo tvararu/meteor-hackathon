@@ -111,9 +111,9 @@ export default class Test extends Component {
         onTimeUpdate={ this.handlePlayerUpdate }
         source={ selectedSong.path } />
       : null
-    const player = (this.state.selectedSong)
+    const player = (selectedSong)
       ? <Player
-        item={ this.state.selectedSong }
+        item={ selectedSong }
         onClickPlay={ this.playPause }
         onClickNext={ this.playNext }
         onClickPrevious={ this.playPrevious }
@@ -132,7 +132,7 @@ export default class Test extends Component {
       { audioPlayer }
       <Playlist
         playlist={ this.data.songs }
-        selectedSong={ this.state.selectedSong }
+        selectedSong={ selectedSong }
         onListItemClick={ this.changeSong } />
       { player }
     </div>
