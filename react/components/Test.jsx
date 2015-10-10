@@ -38,7 +38,10 @@ export default class Test extends Component {
   }
 
   changeSong = (selectedSong) => {
-    this.setState({ selectedSong })
+    this.setState({
+      isPlaying: true,
+      selectedSong
+    })
   }
 
   playPause = () => {
@@ -64,8 +67,8 @@ export default class Test extends Component {
       console.log(isValidUrl)
       Songs.insert({
         name: newSongUrl,
-        url: newSongUrl,
         artist: 'Loading...',
+        url: newSongUrl,
         createdAt: +new Date(),
         updatedAt: +new Date()
       })

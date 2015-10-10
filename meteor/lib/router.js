@@ -7,7 +7,7 @@ Router.route('/', function () {
 })
 
 Router.route('/listen/song/:songPath', function () {
-  const songPath = this.params.songPath
+  const songPath = encodeURIComponent(this.params.songPath)
   const path = `${process.env.PWD}/cache/${songPath}`
   const stat = fs.statSync(path)
 
