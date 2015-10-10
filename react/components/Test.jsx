@@ -7,7 +7,7 @@ import mui from 'material-ui'
 import reactMixin from 'react-mixin'
 import Player from 'components/Player'
 
-const { TextField, FontIcon, RaisedButton } = mui
+const { TextField, RaisedButton } = mui
 
 const { LinkedStateMixin } = addons
 const ThemeManager = new mui.Styles.ThemeManager()
@@ -121,6 +121,7 @@ export default class Test extends Component {
       : null
     const player = (selectedSong)
       ? <Player
+        isPlaying={ isPlaying }
         item={ selectedSong }
         onClickPlay={ this.playPause }
         onClickNext={ this.playNext }

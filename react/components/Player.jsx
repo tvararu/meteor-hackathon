@@ -1,9 +1,11 @@
 import { Component, PropTypes } from 'react'
+import { IconButton } from 'material-ui'
 
 export default class Player extends Component {
   static displayName = 'Player'
 
   static propTypes = {
+    isPlaying: PropTypes.bool,
     item: PropTypes.object,
     onClickPlay: PropTypes.func.isRequired,
     onClickNext: PropTypes.func.isRequired,
@@ -16,18 +18,27 @@ export default class Player extends Component {
         <h2 className='Player__Name'>{ this.props.item.name }</h2>
       </div>
       <div className='Player__Controls'>
-        <i
-          className='fa fa-backward fa-2x'
-          onClick={ this.props.onClickPrevious }
-        />
-        <i
-          className='fa fa-play fa-2x'
-          onClick={ this.props.onClickPlay }
-        />
-        <i
-          className='fa fa-forward fa-2x'
-          onClick={ this.props.onClickNext }
-        />
+        <IconButton
+          iconClassName='material-icons'
+          tooltipPosition='top-center'
+          tooltip='Previous'
+          onClick={ this.props.onClickPrevious }>
+          skip_previous
+        </IconButton>
+        <IconButton
+          iconClassName='material-icons'
+          tooltipPosition='top-center'
+          tooltip='Next'
+          onClick={ this.props.onClickPlay }>
+          { (this.props.isPlaying) ? 'pause_circle_outline' : 'play_circle_outline' }
+        </IconButton>
+        <IconButton
+          iconClassName='material-icons'
+          tooltipPosition='top-center'
+          tooltip='Next'
+          onClick={ this.props.onClickNext }>
+          skip_next
+        </IconButton>
 
       </div>
     </div>
