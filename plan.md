@@ -25,12 +25,14 @@ To build syncing, we need this info:
 - see who are your listeners
 
 
-- Implement Facebook login
-- Make a music file play in the browser.
-- Make a music file from a torrent stream in the browser.
-- Make a search interface to browse torrents/other channels and tell them to stream.
-- Ability to share a link for that song.
-- Ability to create playlists.
+- [x] Implement Facebook login
+- [x] Deployed
+- [x] Make a music file play in the browser.
+- [ ] Make a Youtube/Soundcloud file play in the browser.
+- [ ] Make a music file from a torrent stream in the browser.
+- [ ] Make a search interface to browse torrents/other channels and tell them to stream.
+- [ ] Ability to share a link for a song.
+- [ ] Ability to create playlists.
 
 
 - Ability to listen in sync with your friends.
