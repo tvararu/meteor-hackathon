@@ -1,37 +1,34 @@
+if (Meteor.isServer) {
+  var fs = Npm.require('fs')
+}
+
 Router.route('/', function () {
   this.render(null)
 })
 
-let WRITABLE = null
-let READABLE = null
+let response = null
 
 Router.route('/listen', function () {
-  const fs = Npm.require('fs')
-  const fullFilePath = process.env.PWD + '/public/07 MisterTenBelow.mp3'
+  response = this.response
 
-  this.response.writeHead(200, {
+  response.writeHead(200, {
     'Content-Type': 'audio/mpeg'
   })
 
-  WRITABLE = this.response
-  const readStream = fs.createReadStream(fullFilePath)
-  READABLE = readStream
-  READABLE.pipe(WRITABLE)
+  const readStream = fs.createReadStream(process.env.PWD + '/public/07 MisterTenBelow.mp3')
+  readStream.pipe(response, { end: false })
 }, { where: 'server' })
 
 Router.route('/change', function () {
   console.log('Change')
-  // const fs = Npm.require('fs')
-  // const fullFilePath = process.env.PWD + '/public/08 42Carats.mp3'
-  // const readStream = fs.createReadStream(fullFilePath)
-  READABLE.unpipe(WRITABLE)
-  WRITABLE.end()
+  const readStream = fs.createReadStream(process.env.PWD + '/public/snippet2.mp3')
+  readStream.pipe(response)
   this.response.end()
 }, { where: 'server' })
 
-Router.route('/stop', function () {
-  console.log('Stop', WRITABLE)
-  READABLE.unpipe(WRITABLE)
-  WRITABLE.end()
-  this.response.end()
-}, { where: 'server' })
+// Router.route('/stop', function () {
+//   console.log('Stop', WRITABLE)
+//   READABLE.unpipe(WRITABLE)
+//   WRITABLE.end()
+//   this.response.end()
+// }, { where: 'server' })
