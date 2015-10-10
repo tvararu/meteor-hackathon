@@ -54,7 +54,10 @@
       "Router",
       "_"
     ],
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "ignore": [
+      "meteor/packages"
+    ]
   },
   "prepush": [
     "lint"
