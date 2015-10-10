@@ -9,7 +9,7 @@ import Player from 'components/Player'
 
 const { LinkedStateMixin } = addons
 const ThemeManager = new mui.Styles.ThemeManager()
-const LoginButtons = BlazeToReact('loginButtons')
+// const LoginButtons = BlazeToReact('loginButtons')
 
 @reactMixin.decorate(LinkedStateMixin)
 @reactMixin.decorate(ReactMeteorData)
@@ -28,6 +28,12 @@ export default class Test extends Component {
 
   static childContextTypes = {
     muiTheme: React.PropTypes.object
+  }
+
+  constructor (props) {
+    super(props)
+    require('normalize.css')
+    require('./Test.css')
   }
 
   getMeteorData () {
@@ -119,15 +125,11 @@ export default class Test extends Component {
         onClickPrevious={ this.playPrevious }
       /> : null
     return <div>
-      <LoginButtons />
-      <br />
       <input
         placeholder='Add song to library (YouTube, Soundcloud, etc)'
         type='text'
         valueLink={ this.linkState('newSongUrl') } />
       <button onClick={ this.addSong }>Add song</button>
-      <br />
-      <button onClick={ this.playPause }>Play/pause song</button>
       <br />
       { audioPlayer }
       <Playlist
