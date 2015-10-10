@@ -7,5 +7,6 @@ import Test from 'components/Test'
 ReactRouterSSR.Run(
   <Route path='/' component={ App }>
     <IndexRoute component={ Test } />
+    <Route path='/song/:id' component={ Test } />
   </Route>
 )

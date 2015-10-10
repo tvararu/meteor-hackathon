@@ -15,6 +15,10 @@ const LoginButtons = BlazeToReact('loginButtons')
 export default class Test extends Component {
   static displayName = 'Test'
 
+  static propTypes = {
+    params: React.PropTypes.object
+  }
+
   state = {
     isPlaying: false,
     newSongUrl: '',
@@ -27,7 +31,8 @@ export default class Test extends Component {
 
   getMeteorData () {
     return {
-      songs: Songs.find({}, { sort: { createdAt: -1 } }).fetch()
+      songs: Songs.find({}, { sort: { createdAt: -1 } }).fetch(),
+      selectedSong: Songs.find(this.props.params.id).fetch()
     }
   }
 
@@ -77,13 +82,17 @@ export default class Test extends Component {
   }
 
   render () {
-    const audioPlayer = (this.state.selectedSong)
+    const selectedSong = this.state.selectedSong || this.data.selectedSong[0]
+    const isPlaying = (this.state.selectedSong)
+      ? this.state.isPlaying
+      : !!selectedSong
+    const audioPlayer = (selectedSong)
       ? <AudioPlayer
-        isPlaying={ this.state.isPlaying }
+        isPlaying={ isPlaying }
         onEnd={ this.handlePlayerEnd }
         onProgress={ this.handlePlayerProgress }
         onTimeUpdate={ this.handlePlayerUpdate }
-        source={ this.state.selectedSong.path } />
+        source={ selectedSong.path } />
       : null
     return <div>
       <LoginButtons />
