@@ -6,7 +6,8 @@ export default class Player extends Component {
   static propTypes = {
     item: PropTypes.object,
     onClickPlay: PropTypes.func.isRequired,
-    onClickNext: PropTypes.func.isRequired
+    onClickNext: PropTypes.func.isRequired,
+    onClickPrevious: PropTypes.func.isRequired
   }
 
   render () {
