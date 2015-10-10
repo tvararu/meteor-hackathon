@@ -10,13 +10,13 @@ export default class Test extends Component {
   }
 
   render () {
-    const userId = Meteor.user()._id
+    // const userId = Meteor.user()._id
     return (
       <div>
         <LoginButtons />
         <br />
         <audio controls='controls'>
-          <source src={ `/listen/${userId}` } type='audio/mpeg' />
+          <source src={ `/listen` } type='audio/mpeg' />
         </audio>
       </div>
     )

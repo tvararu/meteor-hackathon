@@ -28,3 +28,4 @@ accounts-password
 blaze-html-templates
 ecmascript
 accounts-facebook
+iron:router

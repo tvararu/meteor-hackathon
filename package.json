@@ -49,7 +49,9 @@
       "ReactMeteorData",
       "HTTP",
       "ReactRouterSSR",
-      "BlazeToReact"
+      "BlazeToReact",
+      "Npm",
+      "Router"
     ],
     "parser": "babel-eslint"
   },
