@@ -28,11 +28,9 @@ To build syncing, we need this info:
 - [x] Implement Facebook login
 - [x] Deployed
 - [x] Make a music file play in the browser.
-- [ ] Make a Youtube/Soundcloud file play in the browser.
-- [ ] Make a music file from a torrent stream in the browser.
-- [ ] Make a search interface to browse torrents/other channels and tell them to stream.
+- [x] Make a Youtube/Soundcloud file play in the browser.
 - [ ] Ability to share a link for a song.
+- [ ] Ability to listen in sync with your friends.
+- [ ] Make a music file from a torrent stream in the browser.
+- [ ] Make a search interface to browse torrents/other sources and tell them to stream.
 - [ ] Ability to create playlists.
-
-
-- Ability to listen in sync with your friends.
