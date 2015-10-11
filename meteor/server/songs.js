@@ -1,39 +1,54 @@
 /* global Songs */
-const fs = Meteor.npmRequire('fs')
+// const fs = Meteor.npmRequire('fs')
+// const path = Meteor.npmRequire('path')
 const youtubedl = Meteor.npmRequire('youtube-dl')
 
 const downloadSong = (url, cb) => {
   const pwd = process.env.PWD
-  const filename = `${encodeURIComponent(url)}.mp3`
-  const path = `${pwd}/cache/${filename}`
+  // const path = `${pwd}/cache/${filename}`
 
-  let fileAlreadyExists = true
+  // let fileAlreadyExists = true
+  //
+  // try {
+  //   fs.statSync(path)
+  // } catch (e) {
+  //   fileAlreadyExists = false
+  // }
+  //
+  // if (fileAlreadyExists) {
+  //   return cb(path, 'Unknown')
+  // }
 
-  try {
-    fs.statSync(path)
-  } catch (e) {
-    fileAlreadyExists = false
-  }
-
-  if (fileAlreadyExists) {
-    return cb(path, 'Unknown')
-  }
-
-  const song = youtubedl(url, ['--extract-audio', '--audio-format=mp3', '--audio-quality=0'])
-  var title = ''
-
-  song.on('info', (info) => {
-    console.log('Download started')
-    console.log('title: ', info.title)
-    console.log('size: ', info.size)
-    title = info.title
-  })
-
-  song.pipe(fs.createWriteStream(path))
-  song.on('end', () => {
-    console.log('Finished: ', title)
+  youtubedl.exec(url, ['-x', '--audio-format=mp3', '-o %(title)s.%(ext)s'], { cwd: `${pwd}/cache/` }, (err, output) => {
+    if (err) throw err
+    // console.log(output.join('\n'))
+    let line = ''
+    line = output.filter(line => line.indexOf('Destination: ') !== -1)[0]
+    if (line) {
+      line = line.replace('[download] Destination: ', '')
+    } else {
+      line = output.filter(line => line.indexOf('has already been downloaded') !== -1)[0]
+      line = line.replace('[download] ', '').replace(' has already been downloaded', '')
+    }
+    console.log(line)
+    const filename = line.replace('.m4a', '.mp3')
+    const title = line.replace('.m4a', '').trim()
     cb(filename, title)
   })
+  // var title = ''
+  //
+  // song.on('info', (info) => {
+  //   console.log('Download started')
+  //   console.log('title: ', info.title)
+  //   console.log('size: ', info.size)
+  //   title = info.title
+  // })
+  //
+  // song.pipe(fs.createWriteStream(path))
+  // song.on('end', () => {
+  //   console.log('Finished: ', title)
+  //   cb(filename, title)
+  // })
 }
 
 Meteor.publish('songs', () => {

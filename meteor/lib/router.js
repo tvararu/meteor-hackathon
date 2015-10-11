@@ -3,9 +3,17 @@ if (Meteor.isServer) {
 }
 
 Router.route('/listen/song/:songPath', function () {
-  const songPath = encodeURIComponent(this.params.songPath)
+  const songPath = decodeURIComponent(this.params.songPath)
   const path = `${process.env.PWD}/cache/${songPath}`
-  const stat = fs.statSync(path)
+  console.log('Streaming', path)
+  try {
+    var stat = fs.statSync(path)
+  } catch (e) {
+    console.log('ERROR: File does not exist: ', path)
+    this.response.end()
+    return
+  }
+  console.log('Size', stat.size)
 
   this.response.writeHead(200, {
     'Content-Type': 'audio/mpeg',
