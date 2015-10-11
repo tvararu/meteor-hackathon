@@ -127,19 +127,20 @@ export default class Test extends Component {
         onClickNext={ this.playNext }
         onClickPrevious={ this.playPrevious }
       /> : null
-    return <div>
-      <TextField
-        hintText='YouTube, Soundcloud, etc'
-        floatingLabelText='Add song to library'
-        valueLink={ this.linkState('newSongUrl') } />
-      <RaisedButton onClick={ this.addSong } label='Add song' />
-      <br />
-      { audioPlayer }
+    return <div className='App'>
+      <div className='Import'>
+        <TextField
+          hintText='YouTube, Soundcloud, etc'
+          floatingLabelText='Add song to library'
+          valueLink={ this.linkState('newSongUrl') } />
+        <RaisedButton onClick={ this.addSong } label='Add song' />
+      </div>
       <Playlist
         playlist={ this.data.songs }
         selectedSong={ selectedSong }
         onListItemClick={ this.changeSong } />
       { player }
+      { audioPlayer }
     </div>
   }
 }

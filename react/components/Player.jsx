@@ -28,7 +28,7 @@ export default class Player extends Component {
         <IconButton
           iconClassName='material-icons'
           tooltipPosition='top-center'
-          tooltip='Next'
+          tooltip='Play/Pause'
           onClick={ this.props.onClickPlay }>
           { (this.props.isPlaying) ? 'pause_circle_outline' : 'play_circle_outline' }
         </IconButton>

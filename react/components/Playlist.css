@@ -2,6 +2,35 @@
   transition: background 0.3s ease;
 }
 
+html, body, #react-app {
+  height: 100%;
+  width: 100%;
+}
+
 .ListItem--selected {
   background-color: #ECF0F1;
+}
+
+.App {
+  position: relative;
+  max-width: 480px;
+  height: 100%;
+}
+
+.Import, .Player {
+  z-index: 1;
+}
+
+.Import {
+  position: absolute;
+  background: #eee;
+  top: 0;
+  width: 100%;
+}
+
+.Player {
+  position: absolute;
+  bottom: 0;
+  background: salmon;
+  width: 100%;
 }
