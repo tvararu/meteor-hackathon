@@ -127,13 +127,24 @@ export default class Test extends Component {
         onClickNext={ this.playNext }
         onClickPrevious={ this.playPrevious }
       /> : null
+
+    const buttonStyle = {
+      position: 'absolute',
+      right: '15px',
+      top: '5px'
+    }
     return <div className='App'>
       <div className='Import'>
         <TextField
-          hintText='YouTube, Soundcloud, etc'
-          floatingLabelText='Add song to library'
-          valueLink={ this.linkState('newSongUrl') } />
-        <RaisedButton onClick={ this.addSong } label='Add song' />
+          className='Import__TextField'
+          hintText='Add song to library'
+          valueLink={ this.linkState('newSongUrl') }
+        />
+        <RaisedButton
+          style={ buttonStyle }
+          onClick={ this.addSong }
+          label='Add song'
+        />
       </div>
       <Playlist
         playlist={ this.data.songs }

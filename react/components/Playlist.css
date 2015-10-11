@@ -23,6 +23,7 @@ html, body, #react-app {
 }
 
 .Import {
+  position: relative;
   background: #eee;
   top: 0;
   width: 100%;
@@ -53,4 +54,13 @@ html, body, #react-app {
 .Next {
   position: absolute;
   left: -24px;
+}
+
+.Import__TextField,
+.Import__RaisedButton {
+  position: absolute;
+}
+
+.Import__TextField {
+  left: 15px;
 }
