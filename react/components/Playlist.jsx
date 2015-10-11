@@ -24,7 +24,9 @@ export default class Playlist extends Component {
               className={ classnames('ListItem', {'ListItem--selected': this.props.selectedSong && this.props.selectedSong._id === item._id}) }
               key={ idx }>
               <ListItem
+                disabled={ !item.path }
                 primaryText={ item.name }
+                secondaryText={ (!item.path) ? 'Loading...' : null }
                 onClick={ () => this.props.onListItemClick(item) }
               />
             </div>
