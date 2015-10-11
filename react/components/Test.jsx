@@ -137,7 +137,7 @@ export default class Test extends Component {
       <div className='Import'>
         <TextField
           className='Import__TextField'
-          hintText='Add song to library'
+          hintText='Youtube, Soundcloud, anything!'
           valueLink={ this.linkState('newSongUrl') }
         />
         <RaisedButton
