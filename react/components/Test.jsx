@@ -111,7 +111,7 @@ export default class Test extends Component {
     const isPlaying = (this.state.selectedSong)
       ? this.state.isPlaying
       : !!selectedSong
-    const audioPlayer = (selectedSong)
+    const audioPlayer = (selectedSong && selectedSong.path)
       ? <AudioPlayer
         isPlaying={ isPlaying }
         onEnd={ this.handlePlayerEnd }
@@ -119,7 +119,7 @@ export default class Test extends Component {
         onTimeUpdate={ this.handlePlayerUpdate }
         source={ selectedSong.path } />
       : null
-    const player = (selectedSong)
+    const player = (selectedSong && selectedSong.path)
       ? <Player
         isPlaying={ isPlaying }
         item={ selectedSong }
